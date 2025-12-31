@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login - Website</title>
+    <style>
+        /* Reset body */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            background: #f0f0f0;
+        }
+
+        /* Banner container with flex to center login */
+        .banner-container {
+            position: relative;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        /* Banner image */
+        .bg-banner {
+            width: 100%;
+            height: 100vh;          /* fill the viewport height */
+            object-fit: cover;       /* cover entire area without distortion */
+            object-position: center;
+            display: block;
+        }
+
+        /* Login box */
+        .login-box {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.85);
+            padding: 20px;
+            width: 320px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+        }
+
+        input {
+            width: 92%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 15px;
+        }
+
+        button {
+            width: 95%;
+            padding: 10px;
+            background: blue;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        #msg {
+            margin-top: 12px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        /* Mobile adjustments */
+        @media (max-width: 600px) {
+            .login-box {
+                width: 90%; /* smaller login box on mobile */
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="banner-container">
+    <img src="banner.JPG" class="bg-banner">
+    <div class="login-box">
+        <h2>Login</h2>
+        <input type="text" id="username" placeholder="Enter Username">
+        <input type="password" id="password" placeholder="Enter Password">
+        <button onclick="login()">Login</button>
+        <p id="msg"></p>
+    </div>
+</div>
+
+<script>
+function login() {
+    let user = document.getElementById("username").value;
+    let pass = document.getElementById("password").value;
+
+    if(user.trim() === "" || pass.trim() === "") {
+        document.getElementById("msg").style.color = "red";
+        document.getElementById("msg").innerText = "Fields cannot be empty!";
+        return;
+    }
+
+    const users = [
+        { username: "RajStore", password: "12345" },
+        { username: "SharmaShop", password: "Shop@2025" },
+        { username: "AmanClothes", password: "Aman@111" },
+        { username: "DelhiMart", password: "Delhi#2025" },
+        { username: "HardikVIP", password: "VIP@0007" }
+    ];
+
+    const validUser = users.find(u => u.username === user && u.password === pass);
+
+    if(validUser) {
+        document.getElementById("msg").style.color = "green";
+        document.getElementById("msg").innerText = "Login Successful!";
+        window.location.href = "index2.html";
+    } else {
+        document.getElementById("msg").style.color = "red";
+        document.getElementById("msg").innerText = "Invalid Username or Password!";
+    }
+}
+</script>
+
+</body>
+</html>
